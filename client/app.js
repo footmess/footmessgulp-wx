@@ -2,10 +2,18 @@
 App({
 	//小程序初始化完成只执行一次
 	onLaunch: function() {
+		wx.cloud.init({
+			// 前往云控制台获取环境id
+			env: '',
+			//是否要捕捉每个用户的访问记录。设置为true，用户可在管理端看到用户访问记录
+			traceUser: true
+		});
+
 		// 展示本地存储能力
 		var logs = wx.getStorageSync('logs') || [];
 		logs.unshift(Date.now());
 		wx.setStorageSync('logs', logs);
+
 		// 获取用户信息
 		wx.getSetting({
 			success: (res) => {
